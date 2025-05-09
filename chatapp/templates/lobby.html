@@ -6,12 +6,20 @@
 <main>
     <section id="form-container">
         <img id="logo" src="{% static 'images/chat-icon.png' %}"/>
-        <div>
+        <div id="welcome-message">
             <h1>Welcome to My Chat!!</h1>
             <p>A group video calling application for you!!</p>
         </div>
 
         <form id="form">
+            <div class="form-field">
+                <input type="text" name="room" placeholder="Enter a Room Name...." style="text-transform: uppercase;">
+            </div>
+
+            <div class="form-field">
+                <input type="text" name="username" placeholder="Enter your Name" style="text-transform: uppercase;">
+            </div>
+
             <div class="form-field">
                 <input type="submit" value="Join Stream">
             </div>
@@ -24,6 +32,20 @@
 
     let handleSubmit = async(e) =>{
         e.preventDefault()
+        let room = e.target.room.value.toUpperCase()
+        let name = e.target.username.value
+
+        let response = await fetch(`/get_token/?channel=${room}`) 
+        let data = await response.json()
+
+        let uid = data.uid
+        let token = data.token
+
+        sessionStorage.setItem('uid',uid)
+        sessionStorage.setItem('token',token)
+        sessionStorage.setItem('room',room)
+        sessionStorage.setItem('name',name)
+
         window.open('/room/','_self')
     }
 
