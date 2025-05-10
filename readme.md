@@ -61,7 +61,7 @@ AGORA_APP_CERTIFICATE = "your-app-certificate"  # Only if using tokens
 Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/django-agora-videochat.git
+git clone https://github.com/neelvaria/Video_Chat_Application-.git
 cd django-agora-videochat
 ```
 
